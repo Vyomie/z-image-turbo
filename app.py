@@ -39,7 +39,7 @@ app = FastAPI(
 
 class GenerateRequest(BaseModel):
     prompt: str = Field(..., min_length=1, max_length=2000)
-    style: str = Field(default="biology")
+    style: str = Field(default="default")
     width: int = Field(default=512, ge=256, le=1024)
     height: int = Field(default=512, ge=256, le=1024)
 

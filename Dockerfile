@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3.11 python3.11-venv python3-pip git && \
+        python3.11 python3.11-venv python3-pip git \
+        libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1

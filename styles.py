@@ -69,11 +69,11 @@ STYLES: dict[str, dict] = {
         "guidance_scale": 1.5,
         "num_inference_steps": 4,
     },
-    "raw": {
-        "prefix": "scientifically accurate illustration, clean cartoon style, educational,",
-        "suffix": "no text, no labels, white background, clean vector-like art, colorful, scientifically precise",
-        "negative": "text, words, letters, labels, watermark, signature, blurry, dark, inaccurate, low quality",
-        "guidance_scale": 1.0,
+    "default": {
+        "prefix": "scientifically accurate educational illustration, clean friendly cartoon style, vibrant multicolor palette, soft cel shading, clear visual hierarchy,",
+        "suffix": "professional science textbook illustration, accurate proportions and structures, no text, no labels, no watermarks, white background, clean vector-like art, bright approachable colors",
+        "negative": "text, words, letters, numbers, labels, watermark, signature, photorealistic, blurry, dark, scary, inaccurate, low quality, messy",
+        "guidance_scale": 1.5,
         "num_inference_steps": 4,
     },
 }
