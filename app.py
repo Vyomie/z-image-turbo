@@ -1,7 +1,6 @@
 import io
 import os
 import uuid
-from datetime import timedelta
 
 import torch
 from diffusers import AutoPipelineForText2Image
@@ -14,7 +13,6 @@ from styles import STYLES, build_prompt
 # ── Config ──────────────────────────────────────────────────────────────
 GCS_BUCKET = os.environ["GCS_BUCKET"]
 MODEL_ID = os.getenv("MODEL_ID", "stabilityai/sdxl-turbo")
-SIGNED_URL_EXPIRY_MINUTES = int(os.getenv("SIGNED_URL_EXPIRY_MINUTES", "60"))
 
 # ── Load pipeline once at startup ───────────────────────────────────────
 pipe = AutoPipelineForText2Image.from_pretrained(
@@ -89,13 +87,10 @@ def generate(req: GenerateRequest):
     blob = bucket.blob(blob_name)
     blob.upload_from_file(buf, content_type="image/png")
 
-    signed_url = blob.generate_signed_url(
-        expiration=timedelta(minutes=SIGNED_URL_EXPIRY_MINUTES),
-        method="GET",
-    )
+    public_url = f"https://storage.googleapis.com/{GCS_BUCKET}/{blob_name}"
 
     return GenerateResponse(
-        image_url=signed_url,
+        image_url=public_url,
         style=req.style,
         prompt_used=styled["prompt"],
     )
