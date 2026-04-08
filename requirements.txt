@@ -1,0 +1,10 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+torch==2.5.1
+diffusers==0.31.0
+transformers==4.47.1
+accelerate==1.2.1
+safetensors==0.4.5
+google-cloud-storage==2.19.0
+pydantic==2.10.4
+invisible-watermark>=0.2.0
