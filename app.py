@@ -29,12 +29,17 @@ gcs = storage.Client()
 bucket = gcs.bucket(GCS_BUCKET)
 
 # ── FastAPI ─────────────────────────────────────────────────────────────
-app = FastAPI(title="Z Image Turbo", version="1.0.0")
+app = FastAPI(
+    title="Z Image Turbo",
+    version="1.0.0",
+    description="Scientific illustration generator for AI tutoring. "
+    "Produces cartoonish yet scientifically accurate diagrams across disciplines.",
+)
 
 
 class GenerateRequest(BaseModel):
     prompt: str = Field(..., min_length=1, max_length=2000)
-    style: str = Field(default="cinematic")
+    style: str = Field(default="biology")
     width: int = Field(default=512, ge=256, le=1024)
     height: int = Field(default=512, ge=256, le=1024)
 
